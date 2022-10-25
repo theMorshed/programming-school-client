@@ -5,11 +5,13 @@ import Courses from '../components/pages/Courses';
 import Login from '../components/pages/Login';
 import Register from '../components/pages/Register';
 import Checkout from '../components/pages/Checkout';
+import ErrorPage from "../components/pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
