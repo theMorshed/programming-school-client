@@ -6,6 +6,7 @@ import Login from '../components/pages/Login';
 import Register from '../components/pages/Register';
 import Checkout from '../components/pages/Checkout';
 import ErrorPage from "../components/pages/ErrorPage";
+import CourseDetails from "../components/sections/CourseDetails";
 
 export const router = createBrowserRouter([
     {
@@ -19,7 +20,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses',
+                loader: () => fetch('https://programming-school-server.vercel.app/courses'),
                 element: <Courses></Courses>
+            },
+            {
+                path: '/course/:id',
+                loader: ({ params }) => fetch(`https://programming-school-server.vercel.app/course/${params.id}`),
+                element: <CourseDetails></CourseDetails>
             },
             {
                 path: '/login',
