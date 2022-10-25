@@ -1,8 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import People from '../../assets/people.jpeg';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
+    
     return (
         <div>
             <div className="navbar bg-base-100 py-6">
@@ -15,7 +19,6 @@ const Header = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to='/courses'>Courses</Link></li>
                             <li><Link to='/register'>Register</Link></li>
-                            <li><Link to='/login'>Login</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -24,16 +27,21 @@ const Header = () => {
                         <ul className="menu menu-horizontal p-0">
                             <li><Link to='/courses'>Courses</Link></li>
                             <li><Link to='/register'>Register</Link></li>
-                            <li><Link to='/login'>Login</Link></li>
+                            
                         </ul>
                     </div>
-                    <div>
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src={People} />
+                    {
+                        user ?
+                            <div>
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user?.photoURL} />
+                                    </div>
+                                </label>
                             </div>
-                        </label>
-                    </div>
+                            :
+                            <Link to='/login'>Login</Link>
+                    }
                 </div>
             </div>            
         </div>
