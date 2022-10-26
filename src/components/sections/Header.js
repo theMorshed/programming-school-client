@@ -15,7 +15,7 @@ const Header = () => {
                 <div className="navbar-start">
                     <Link to='/' className="btn btn-ghost normal-case text-xl">
                         <img className='mr-4' src={logo} alt="logo" width="50" height="50" />
-                        Programming School
+                        <span className='hidden md:flex'>Programming School</span>
                     </Link>
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -30,6 +30,12 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-end">
+                    <div className="form-control">
+                        <label className="label cursor-pointer">
+                            <span className="label-text mr-2">Dark</span>
+                            <input type="checkbox" className="toggle toggle-primary" />
+                        </label>
+                    </div>
                     <div className='hidden lg:flex'>
                         <ul className="menu menu-horizontal p-0">
                             <li><Link to='/courses'>Courses</Link></li>
