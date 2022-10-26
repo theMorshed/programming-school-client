@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Banner from '../../assets/banner-bg.jpg';
 
 const Content = () => {
@@ -8,8 +9,8 @@ const Content = () => {
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Programming</h1>
-                    <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <p className="mb-5">If You want to Learn Programming with US then you can choose your favorite topics from below and start learning after few of clicks..</p>
+                    <Link to='/courses'><button className="btn btn-primary">Our Popular Courses</button></Link>
                 </div>
             </div>
         </div>

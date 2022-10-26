@@ -13,7 +13,7 @@ const SingleCourse = ({ course }) => {
                 <p>{ details.length > 50 ? details.slice(0, 50) : details}</p>
                 <div className="card-actions mt-1">
                     <Link to={`/course/${id}`}>
-                        <button className="btn btn-primary px-10">Buy Now</button>
+                        <button className="btn btn-primary px-10">Start Learning</button>
                     </Link>
                 </div>
             </div>
