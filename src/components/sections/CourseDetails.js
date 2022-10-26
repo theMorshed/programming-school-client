@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 
 const CourseDetails = () => {
     const course = useLoaderData();
-    const { title, image_url, details } = course;
+    const { title, image_url, details, id } = course;
     return (
         <div className='flex py-10'>
             <div className="w-full text-left">
@@ -14,7 +14,7 @@ const CourseDetails = () => {
                         <h2 className="card-title">{title}</h2>
                         <p>{details}</p>
                         <div className="card-actions justify-end">
-                            <Link to='/checkout'>
+                            <Link to={`/checkout/${id}`}>
                                 <button className="btn btn-primary">Get Premium Access</button>
                             </Link>
                         </div>

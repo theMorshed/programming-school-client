@@ -8,6 +8,7 @@ import Checkout from '../components/pages/Checkout';
 import ErrorPage from "../components/pages/ErrorPage";
 import CourseDetails from "../components/sections/CourseDetails";
 import PrivateRoute from "../components/route/PrivateRoute";
+import Blog from "../components/pages/Blog";
 
 export const router = createBrowserRouter([
     {
@@ -38,8 +39,13 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/checkout',
+                path: '/checkout/:id',
+                loader: ({ params }) => fetch(`https://programming-school-server.vercel.app/course/${params.id}`),
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     }
