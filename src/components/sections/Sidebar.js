@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ courses }) => {   
-    console.log(courses);
     return (
         <div>
             <div className="courses">
