@@ -7,6 +7,7 @@ import Register from '../components/pages/Register';
 import Checkout from '../components/pages/Checkout';
 import ErrorPage from "../components/pages/ErrorPage";
 import CourseDetails from "../components/sections/CourseDetails";
+import PrivateRouter from "../components/router/PrivateRouter";
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/checkout',
-                element: <Checkout></Checkout>
+                element: <PrivateRouter><Checkout></Checkout></PrivateRouter>
             }
         ]
     }
