@@ -5,7 +5,10 @@ import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogout = () => {
+        logOut();
+    }
     return (
         <div>
             <div className="navbar bg-base-100 py-6">
@@ -33,11 +36,17 @@ const Header = () => {
                             <li><Link to='/register'>Register</Link></li>
                             <li><Link to='/faq'>FAQ</Link></li>
                             <li><Link to='/blog'>Blog</Link></li>
+                            {
+                                user ?
+                                    <li onClick={handleLogout}><Link to='/'>Logout</Link></li>
+                                    :
+                                    ""
+                            }
                         </ul>
                     </div>
                     {
                         user ?
-                            <div>
+                            <div>                                
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom tooltip-primary" data-tip={user?.displayName}>
                                     <div className="w-10 rounded-full">
                                         <img src={user?.photoURL} alt="user" />
