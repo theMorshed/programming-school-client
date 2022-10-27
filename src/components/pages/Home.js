@@ -2,9 +2,9 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
-            <h2 className='text-3xl text-center mt-10 underline underline-offset-2'>Our Populare subjects</h2>
-            <div className='flex gap-5 justify-between pb-10'>                
+        <div className='py-10'>
+            <h2 className='text-3xl text-center mt-10 underline underline-offset-2'>Our Popular subjects</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>                
                 <div className="card w-full bg-base-100 shadow-xl">
                     <figure className="px-10 pt-10">
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Shoes" className="rounded-xl" />

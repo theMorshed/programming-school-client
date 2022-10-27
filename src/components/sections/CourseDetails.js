@@ -9,6 +9,7 @@ const CourseDetails = () => {
         <div className='flex py-10'>
             <div className="w-full text-left">
                 <div className="card w-full bg-base-100 shadow-xl">
+                    <h2 className='text-3xl text-primary font-semibold py-5 text-center'>{title}</h2>
                     <figure><img src={image_url} alt="" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{title}</h2>

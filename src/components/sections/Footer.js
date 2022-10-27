@@ -4,18 +4,18 @@ const Footer = () => {
     return (
         <footer className="footer p-10 bg-base-200 text-base-content">
             <div>
-                <span className="footer-title">Services</span>
-                <a className="link link-hover">Branding</a>
-                <a className="link link-hover">Design</a>
-                <a className="link link-hover">Marketing</a>
-                <a className="link link-hover">Advertisement</a>
+                <span className="footer-title">Category</span>
+                <a className="link link-hover">Computer Science</a>
+                <a className="link link-hover">Mathmatics</a>
+                <a className="link link-hover">Statistics</a>
+                <a className="link link-hover">Learning</a>
             </div>
             <div>
-                <span className="footer-title">Company</span>
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
-                <a className="link link-hover">Press kit</a>
+                <span className="footer-title">Instructor</span>
+                <a className="link link-hover">Tamim Shahriar subeen</a>
+                <a className="link link-hover">Jhankar mahbub</a>
+                <a className="link link-hover">Hasin Hayder</a>
+                <a className="link link-hover">Sumit Saha</a>
             </div>
             <div>
                 <span className="footer-title">Legal</span>
@@ -34,7 +34,8 @@ const Footer = () => {
                         <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
                     </div>
                 </div>
-            </div>
+                <p className='mt-3'>&copy; Copyright 2023, Programming School</p>
+            </div>            
         </footer>
     );
 };
