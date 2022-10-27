@@ -12,11 +12,11 @@ const Sidebar = ({ courses }) => {
                     }
                 </div>
             </div>
-            <div className="category">
+            <div className="instructor mt-10">
                 <h2 className='text-3xl underline underline-offset-1'>Instructor</h2>
                 <div>
                     {                        
-                        courses?.map(course => <p key={course.id} className='text-xl my-2 cursor-pointer hover:text-primary hover:underline'>{course?.author?.name}</p>)
+                        courses?.map(course => <p key={course.id} className='text-xl my-2'>{course?.author?.name}</p>)
                     }
                 </div>
             </div>

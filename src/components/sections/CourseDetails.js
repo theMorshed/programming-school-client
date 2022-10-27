@@ -11,6 +11,7 @@ const options = {
 const CourseDetails = () => {
     const course = useLoaderData();
     const { title, image_url, details, id, price } = course;
+    const { name } = course.author;
     return (
         <div className='flex py-10'>
             <div className="w-full text-left">
@@ -20,7 +21,7 @@ const CourseDetails = () => {
                     </ReactToPdf>
                 </div>
                 <div ref={ref} className="card w-full bg-base-100 shadow-xl">
-                    <h2 className='text-3xl text-primary font-semibold py-5 text-center'>{title}</h2>
+                    <h2 className='text-3xl text-primary font-semibold py-8 text-center'>{title} by {name}</h2>
                     <figure><img src={image_url} alt="" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{title}</h2>

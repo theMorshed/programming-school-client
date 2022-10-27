@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser, setUser, updateUserProfile, error, setError } = useContext(AuthContext);
+    const { createUser, user, setUser, updateUserProfile, error, setError } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -19,21 +19,20 @@ const Register = () => {
         const userProfile = { displayName: fullName, photoURL: photoUrl };
 
         createUser(email, password)
-            .then(result => {
+            .then(result => {    
                 updateUserProfile(userProfile)
-                    .then(() => { })
+                    .then(() => {})
                     .catch(err => {
                         setError(err.message);
                     });
                 setUser(result.user);
                 form.reset();
                 navigate(from, { replace: true });
+                window.location.reload();
             })
             .catch(err => {
                 setError(err.message);
-            });
-        
-        
+            });            
     }
     return (
         <div className="hero py-10 bg-base-200 my-10">
