@@ -1,10 +1,14 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, setUser, updateUserProfile, error, setError } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -16,13 +20,20 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
+                updateUserProfile(userProfile)
+                    .then(() => { })
+                    .catch(err => {
+                        setError(err.message);
+                    });
                 setUser(result.user);
+                form.reset();
+                navigate(from, { replace: true });
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                setError(err.message);
+            });
         
-        updateUserProfile(userProfile)
-            .then(() => {})
-            .then(err => console.error(err.message));
+        
     }
     return (
         <div className="hero py-10 bg-base-200 my-10">
@@ -60,6 +71,12 @@ const Register = () => {
                                 <Link to='/login' className="label-text-alt link link-hover">Already Have an account. Login here</Link>
                             </label>
                         </div>
+                        {
+                            error ?
+                                <p className='text-red-500 font-semibold'>{error}</p>
+                                :
+                                ''
+                        }
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register Now</button>
                         </div>

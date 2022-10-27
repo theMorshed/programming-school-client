@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import ReactToPdf from "react-to-pdf";
+const ref = React.createRef();
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [17, 12]
+};
 
 const CourseDetails = () => {
     const course = useLoaderData();
@@ -8,7 +14,12 @@ const CourseDetails = () => {
     return (
         <div className='flex py-10'>
             <div className="w-full text-left">
-                <div className="card w-full bg-base-100 shadow-xl">
+                <div>
+                    <ReactToPdf targetRef={ref} options={options} filename="course.pdf">
+                        {({ toPdf }) => <button onClick={toPdf} className="btn btn-primary ml-6">Generate Pdf</button>}
+                    </ReactToPdf>
+                </div>
+                <div ref={ref} className="card w-full bg-base-100 shadow-xl">
                     <h2 className='text-3xl text-primary font-semibold py-5 text-center'>{title}</h2>
                     <figure><img src={image_url} alt="" /></figure>
                     <div className="card-body">
@@ -22,7 +33,7 @@ const CourseDetails = () => {
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     );
 };
