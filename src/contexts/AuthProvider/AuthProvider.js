@@ -8,9 +8,11 @@ const auth = getAuth(app);
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [theme, setTheme] = useState('light');
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -59,7 +61,9 @@ const AuthProvider = ({ children }) => {
         logOut,
         error,
         setError,
-        passwordReset
+        passwordReset,
+        theme,
+        setTheme
     };
     return (
         <AuthContext.Provider value={authInfo}>

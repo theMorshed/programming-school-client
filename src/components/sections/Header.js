@@ -5,9 +5,16 @@ import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, theme, setTheme } = useContext(AuthContext);
     const handleLogout = () => {
         logOut();
+    }
+    const handleChangeTheme = () => {
+        if (theme === 'dark') {
+            setTheme('light');
+        } else {
+            setTheme('dark');
+        }
     }
     return (
         <div>
@@ -34,7 +41,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-end">
-                    <div className="form-control">
+                    <div onChange={handleChangeTheme} className="form-control">
                         <label className="label cursor-pointer">
                             <span className="label-text mr-2">Dark</span>
                             <input type="checkbox" className="toggle toggle-primary" />
