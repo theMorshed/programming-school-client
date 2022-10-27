@@ -17,7 +17,7 @@ const CourseDetails = () => {
             <div className="w-full text-left">
                 <div>
                     <ReactToPdf targetRef={ref} options={options} filename="course.pdf">
-                        {({ toPdf }) => <button onClick={toPdf} className="btn btn-primary ml-6">Generate Pdf</button>}
+                        {({ toPdf }) => <button onClick={toPdf} className="btn btn-primary ml-6">Download Pdf</button>}
                     </ReactToPdf>
                 </div>
                 <div ref={ref} className="card w-full bg-base-100 shadow-xl">
