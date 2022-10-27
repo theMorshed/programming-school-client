@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    const { setUser, signIn, googleLogin, githubLogin } = useContext(AuthContext);
+    const { setUser, signIn, googleLogin, githubLogin, error, setError, passwordReset } = useContext(AuthContext);
 
     const handleSignIn = (event) => {
         event.preventDefault();
@@ -22,7 +25,9 @@ const Login = () => {
                 form.reset();
                 navigate(from, { replace: true });
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                setError(err.message);
+            });
     }
 
     const handleGoogleLogin = () => {
@@ -32,7 +37,9 @@ const Login = () => {
                 setUser(user);
                 navigate(from, { replace: true });
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                setError(err.message);
+            });
     }
 
     const handleGithubLogin = () => {
@@ -42,7 +49,26 @@ const Login = () => {
                 setUser(user);
                 navigate(from, { replace: true });
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setError(err.message);
+            });
+    }
+
+    const handleEmail = (event) => {
+        const email = event.target.value;
+        setEmail(email);
+    }
+
+    const handleResetPassword = () => {
+        if (!email) {
+            toast.error('Please write your email address in email field.');
+            return;
+        }
+        passwordReset(email)
+            .then(result => {
+                toast.success('Password Reset email sent successfully.');
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -59,7 +85,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="text" name="email" placeholder="email" className="input input-bordered" required />
+                                <input onBlur={handleEmail} type="text" name="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -69,22 +95,28 @@ const Login = () => {
                                 <label className="label mt-4">
                                     <Link to='/register' className="label-text-alt link link-hover">Don't Have an account? Register here</Link>
                                 </label>
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <label className="label" onClick={handleResetPassword}>
+                                    <a className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+                            {
+                                error ?
+                                    <p className='text-red-500 font-semibold'>{error}</p>
+                                    :
+                                    ''
+                            }
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
                         <div className='mt-4'>
-                            <button onClick={handleGoogleLogin} className="btn btn-xs btn-primary">Login with Google</button>
-                            <button onClick={handleGithubLogin} className="ml-2 btn btn-xs btn-primary">Github Login</button>
+                            <button onClick={handleGoogleLogin} className="btn btn-xs btn-primary btn-outline"><FaGoogle className="mr-2"></FaGoogle>Login with Google</button>
+                            <button onClick={handleGithubLogin} className="ml-2 btn btn-xs btn-primary btn-outline"><FaGithub className="mr-2"></FaGithub>Github Login</button>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <Toaster></Toaster>
         </div>
     );
 };
