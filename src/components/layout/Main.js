@@ -8,7 +8,6 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Main = () => {
     const { theme } = useContext(AuthContext);
-    
     return (
         <div className='w-full' data-theme={theme}>
             <div className='w-10/12 mx-auto'>

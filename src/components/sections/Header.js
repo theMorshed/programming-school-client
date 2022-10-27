@@ -6,14 +6,17 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const { user, logOut, theme, setTheme } = useContext(AuthContext);
+
     const handleLogout = () => {
         logOut();
     }
     const handleChangeTheme = () => {
         if (theme === 'dark') {
-            setTheme('light');
+            setTheme('light');  
+            localStorage.setItem('theme', 'light');
         } else {
-            setTheme('dark');
+            setTheme('dark');  
+            localStorage.setItem('theme', 'dark');
         }
     }
     return (
