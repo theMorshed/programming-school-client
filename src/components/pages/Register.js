@@ -35,7 +35,7 @@ const Register = () => {
             });            
     }
     return (
-        <div className="hero py-10 bg-base-200 my-10">
+        <div className="hero py-10 my-10">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Please Register Here</h1>
